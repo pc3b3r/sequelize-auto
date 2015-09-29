@@ -4,7 +4,7 @@ var sequelizeAuto = require('../')
   , path = require('path');
 
 var argv = require('optimist')
-  .usage('Usage: sequelize-auto -h <host> -d <database> -u <user> -x [password] -p [port]  --dialect [dialect] -c [/path/to/config] -o [/path/to/models]')
+  .usage('Usage: sequelize-auto -h <host> -d <database> -u <user> -x [password] -p [port]  --dialect [dialect] -c [/path/to/config] -o [/path/to/models] -s [true|false]')
   .demand(['h', 'd', 'u'])
   .alias('h', 'host')
   .alias('d', 'database')
@@ -14,6 +14,7 @@ var argv = require('optimist')
   .alias('c', 'config')
   .alias('o', 'output')
   .alias('e', 'dialect')
+  .alias('s', 'singular')
   .describe('h', 'IP/Hostname for the database.')
   .describe('d', 'Database name.')
   .describe('u', 'Username for database.')
@@ -33,10 +34,12 @@ configFile.dialect = argv.e || configFile.dialect || 'mysql';
 configFile.port = argv.p || configFile.port || 3306;
 configFile.host = argv.h || configFile.host || 'localhost';
 
+var singular = argv.s || false;
+
 var auto = new sequelizeAuto(argv.d, argv.u, (argv.x || null), configFile);
 var dir = argv.o || path.resolve(process.cwd() + '/models');
 
-auto.run({spaces: true, indentation: 2, directory: dir}, function(err){
+auto.run({spaces: true, indentation: 2, directory: dir, singular : singular}, function(err){
   if (err) throw err;
   console.log('Done!');
 });

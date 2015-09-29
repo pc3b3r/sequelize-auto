@@ -3,7 +3,7 @@ var path = require('path');
 module.exports = {
   directory: path.resolve(__dirname + '/models'),
   username: "root",
-  password: null,
+  password: "password123",
   database: 'sequelize_auto_test',
   host: '127.0.0.1',
   pool: { maxConnections: 5, maxIdleTime: 30000},
@@ -15,7 +15,7 @@ module.exports = {
   //make maxIdleTime small so that tests exit promptly
   mysql: {
     username: "root",
-    password: null,
+    password: "password123",
     database: 'sequelize_auto_test',
     host: '127.0.0.1',
     port: 3306,
