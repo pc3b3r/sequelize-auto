@@ -10,21 +10,24 @@ Automatically generate models for [SequelizeJS](https://github.com/sequelize/seq
 
 ## Usage
 
-    sequelize-auto -h <host> -d <database> -u <user> -x [password] -p [port]  --dialect [dialect] -c [/path/to/config] -o [/path/to/models]
+    sequelize-auto -h <host> -d <database> -u <user> -x [password] -p [port]  --dialect [dialect] -c [/path/to/config] -o [/path/to/models] -s [true|false] -t [true|false]
 
     Options:
-      -h, --host      IP/Hostname for the database.                                      [required]
-      -d, --database  Database name.                                                     [required]
-      -u, --user      Username for database.                                             [required]
-      -x, --pass      Password for database.
-      -p, --port      Port number for database.
-      -c, --config    JSON file for sending additional options to the Sequelize object.
-      -o, --output    What directory to place the models.
-      -e, --dialect   The dialect/engine that you're using: postgres, mysql, sqlite
+      -h, --host        IP/Hostname for the database.                                      [required]
+      -d, --database    Database name.                                                     [required]
+      -u, --user        Username for database.                                             [required]
+      -x, --pass        Password for database.
+      -p, --port        Port number for database.
+      -c, --config      JSON file for sending additional options to the Sequelize object.
+      -o, --output      What directory to place the models.
+      -s, --singular    The model name is the same as the table.
+      -t, --timestamps  Whether the table has the properties 'createdAt' and 'updatedAt'
+      -e, --dialect     The dialect/engine that you're using: postgres, mysql, sqlite
+
 
 ## Example
 
-    sequelize-auto -o "./models" -d sequelize_auto_test -h localhost -u daniel -p 5432 -x my_password -e postgres
+    sequelize-auto -o "./models" -d sequelize_auto_test -h localhost -u daniel -p 5432 -x my_password -e postgres -t true -e true
 
 Produces a file/files such as ./models/Users.js which looks like:
 
