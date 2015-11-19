@@ -14,7 +14,7 @@ var argv = require('optimist')
   .alias('c', 'config')
   .alias('o', 'output')
   .alias('e', 'dialect')
-  .alias('s', 'singular'),
+  .alias('s', 'singular')
   .alias('t', 'timestamps')
   .describe('h', 'IP/Hostname for the database.')
   .describe('d', 'Database name.')
@@ -36,7 +36,7 @@ configFile.port = argv.p || configFile.port || 3306;
 configFile.host = argv.h || configFile.host || 'localhost';
 
 var singular = argv.s || false;
-var timestamps = argv.t || false;
+var timestamps = argv.t || true;
 
 var auto = new sequelizeAuto(argv.d, argv.u, (argv.x || null), configFile);
 var dir = argv.o || path.resolve(process.cwd() + '/models');
